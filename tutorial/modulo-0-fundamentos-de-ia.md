@@ -548,10 +548,10 @@ O treino de um LLM de chat moderno acontece, em geral, em fases.
 O modelo lê quantidades enormes de texto (páginas web, livros, artigos, código) e, a cada posição, tenta prever o token seguinte. A função de perda é a **entropia cruzada**: penaliza o modelo pela baixa probabilidade que ele deu ao token que de fato veio.
 
 $$
-\mathcal{L} = -\sum_{t} \log p_\theta(x_t \mid x_{<t})
+\mathcal{L} = -\sum_{t} \log p_{\theta}(x_t \mid x_{1:t-1})
 $$
 
-Em palavras: para cada posição $t$, olhe a probabilidade que o modelo (com parâmetros $\theta$) deu ao token correto $x_t$, sabendo os anteriores $x_{<t}$. Quanto maior essa probabilidade, menor a perda.
+Em palavras: para cada posição $t$, olhe a probabilidade que o modelo (com parâmetros $\theta$) deu ao token correto $x_t$, sabendo os anteriores $x_{1:t-1}$. Quanto maior essa probabilidade, menor a perda.
 
 Parece uma tarefa modesta, mas para prever bem o próximo token em textos variados o modelo é pressionado a aprender gramática, fatos, estilos, raciocínios comuns e a estrutura de linguagens de programação. É uma **compressão estatística** de tudo o que leu.
 
