@@ -1,0 +1,31 @@
+schema: spec-driven
+
+context: |
+  Projeto: Catálogo de Produtos e Pedidos (curso de programação assistida por IA).
+  Stack: Java 21, Spring Boot 3.x, Spring Web, Spring Data JPA, Bean Validation.
+  Banco: H2 em dev/teste, PostgreSQL 16 em produção. Migrações com Flyway.
+  Arquitetura: camadas controller -> service -> repository; DTOs como Java records.
+  Pacote raiz: br.edu.fatec.catalogo
+  Testes: JUnit 5, Mockito, @WebMvcTest para controllers, @DataJpaTest para repositórios.
+  Erros: RFC 9457 (application/problem+json) via @RestControllerAdvice.
+  Idioma: código em inglês; mensagens ao usuário e documentação em português.
+
+rules:
+  proposal:
+    - Declarar impacto em endpoints públicos e no esquema do banco
+    - Marcar quebras de contrato da API com **BREAKING**
+  specs:
+    - Descrever status HTTP e formato de erro em cada cenário de falha
+    - Não citar classes Java nem anotações Spring nas specs
+  design:
+    - Justificar toda dependência Maven nova
+  tasks:
+    - Cada tarefa deve citar o teste que a comprova
+
+operations:
+  apply:
+    guidance:
+      - Rodar ./mvnw -q test -Dtest=<ClasseAfetada> antes da suíte completa
+  archive:
+    guidance:
+      - Resumo de conclusão curto, com a lista de endpoints alterados

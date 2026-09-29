@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: catalogo
+  jpa:
+    hibernate:
+      ddl-auto: validate        # design D2: o Hibernate só confere; quem cria é o Flyway
+    open-in-view: false
+  mvc:
+    problemdetails:
+      enabled: true             # erros do Spring MVC em application/problem+json
+  datasource:
+    url: jdbc:h2:mem:catalogo;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/catalogo}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
